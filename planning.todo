@@ -1,0 +1,38 @@
+✔ Design the Domain @done
+    ✔ Identify Entities @done
+        Order, payment
+    ✔ Identify Value Objects @done
+        Item, customer
+    ✔ Identify Aggregates @done
+        Order, Payment
+    ✔ Identify Core Domain @done
+        Checkout
+    ✔ Identify Events @done
+        create.order, order.created, payment.paid, payment.refused
+
+✔ Design the Solution @done
+    ✔ Decide on the Microservices Languages @done
+    ✔ Decide Microservices Data Storage @done
+    ✔ Design the Microservices Interactions @done
+    ✔ Decide Microservices Communication @done
+
+☐ Program the Solution
+    ☐ Implement Checkout Microservice
+        ✔ Implement domain @done
+            ✔ Build value objects @done
+            ✔ Build entities @done
+            ✔ Build events @done
+            ✔ Create repository contracts @done
+        ✔ Create usecases @done
+            ✔ Create Usecase, Messaging and EventHandler contracts @done
+            ✔ Create order @done
+            ✔ List orders @done
+        ☐ Install and configure Spring Boot @started(05-10-24 14:50)
+        ☐ Implement infra
+            ☐ Repositories using JPA
+            ☐ Messaging
+            ☐ Event Handling
+            ☐ Controllers
+            ☐ Controller advice
+    ☐ Implement the Microservices Interactions
+    ☐ Implement the Microservices Communication
