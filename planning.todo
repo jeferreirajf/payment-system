@@ -38,5 +38,9 @@
     ☐ Implement Payment Microservice
         ✔ Configure NestJS @done
         ✔ Create domain @done
-        ☐ Create repository
-        ☐ Create usecases
+        ✔ Create repository @done
+        ☐ Create fetcher
+        ☐ Create messaging
+        ☐ Create event handlers
+        ☐ Create consumers
+        ☐ Create Kafka configuration

@@ -1,6 +1,21 @@
 import { PaymentDataValidatorFactory } from '../factories/payment-data.validator.factory';
 import { ValueObject } from '../shared/value-object';
-import { PaymentDataZodValidator } from '../validators/payment-data.zod.validator';
+
+export type PaymentDataCreateDto = {
+  cardNumber: string;
+  cardHolder: string;
+  expirationDate: string;
+  cvv: string;
+};
+
+export type PaymentDataWithDto = {
+  cardNumber: string;
+  cardHolder: string;
+  expirationDate: string;
+  cvv: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
 
 export class PaymentData extends ValueObject {
   private constructor(
@@ -15,12 +30,12 @@ export class PaymentData extends ValueObject {
     this.validate();
   }
 
-  public static createWith(
-    cardNumber: string,
-    cardHolder: string,
-    expirationDate: string,
-    cvv: string,
-  ): PaymentData {
+  public static create({
+    cardNumber,
+    cardHolder,
+    expirationDate,
+    cvv,
+  }: PaymentDataCreateDto): PaymentData {
     return new PaymentData(
       cardNumber,
       cardHolder,
@@ -28,6 +43,24 @@ export class PaymentData extends ValueObject {
       cvv,
       new Date(),
       new Date(),
+    );
+  }
+
+  public static with({
+    cardNumber,
+    cardHolder,
+    expirationDate,
+    cvv,
+    createdAt,
+    updatedAt,
+  }: PaymentDataWithDto): PaymentData {
+    return new PaymentData(
+      cardNumber,
+      cardHolder,
+      expirationDate,
+      cvv,
+      createdAt,
+      updatedAt,
     );
   }
 

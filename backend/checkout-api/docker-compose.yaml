@@ -58,7 +58,7 @@ services:
 
     mongodb:
         image: mongo:7.0.8
-        container_name: mongodb-nivells
+        container_name: mongo-develcode
         environment:
             MONGO_INITDB_ROOT_PASSWORD: develcode
             MONGO_INITDB_ROOT_USERNAME: develcode
