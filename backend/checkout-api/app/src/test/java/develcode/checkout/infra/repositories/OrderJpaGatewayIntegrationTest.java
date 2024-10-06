@@ -56,6 +56,48 @@ public class OrderJpaGatewayIntegrationTest {
     }
 
     @Test
+    public void givenExistentUpdatedOrder_whenUpdate_thenUpdateOrderInDatabase() {
+        final var anOrder = Order.create(this.order.getCustomer(), this.order.getPaymentData());
+
+        this.orderGateway.create(anOrder);
+
+        anOrder.approve();
+        anOrder.addItem(Item.createWith("Item name", 2, 2.25f));
+
+        this.orderGateway.update(anOrder);
+
+        final var aModel = this.orderRepository.findById(anOrder.getId()).get();
+
+        assertEquals(anOrder.getId(), aModel.getId());
+        assertEquals(anOrder.getCustomer().getName(), aModel.getCustomer().getName());
+        assertEquals(anOrder.getCustomer().getEmail(), aModel.getCustomer().getEmail());
+        assertEquals(anOrder.getPaymentData().getCardNumber(), aModel.getPaymentData().getCardNumber());
+        assertEquals(anOrder.getPaymentData().getCardHolder(), aModel.getPaymentData().getCardHolder());
+        assertEquals(anOrder.getPaymentData().getExpirationDate(), aModel.getPaymentData().getExpirationDate());
+        assertEquals(anOrder.getPaymentData().getCvv(), aModel.getPaymentData().getCvv());
+        assertEquals(anOrder.getItems().size(), aModel.getItems().size());
+        assertEquals(anOrder.getItems().get(0).getName(), aModel.getItems().get(0).getName());
+        assertEquals(anOrder.getItems().get(0).getQuantity(), aModel.getItems().get(0).getQuantity());
+        assertEquals(anOrder.getItems().get(0).getPrice(), aModel.getItems().get(0).getPrice());
+        assertEquals(anOrder.getStatus(), aModel.getStatus());
+        assertEquals(anOrder.getCreatedAt(), aModel.getCreatedAt());
+        assertEquals(anOrder.getUpdatedAt(), aModel.getUpdatedAt());
+    }
+
+    @Test
+    public void givenInexistentOrder_whenUpdate_thenDoNothing() {
+        final var anOrder = Order.create(this.order.getCustomer(), this.order.getPaymentData());
+
+        anOrder.approve();
+
+        this.orderGateway.update(anOrder);
+
+        final var aModel = this.orderRepository.findById(anOrder.getId()).orElse(null);
+
+        assertEquals(null, aModel);
+    }
+
+    @Test
     public void givenExistentOrderId_whenFindById_thenRetrieveFromDatabase() {
         this.orderGateway.create(this.order);
 

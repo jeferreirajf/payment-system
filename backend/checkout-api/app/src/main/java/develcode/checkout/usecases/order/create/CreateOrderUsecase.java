@@ -56,7 +56,7 @@ public class CreateOrderUsecase implements Usecase<CreateOrderInputDto, String> 
 
         final var event = OrderCreatedEvent.createWith(anOrder);
 
-        messaging.publish(event);
+        messaging.publish("payment", event);
 
         return anOrder.getId();
     }

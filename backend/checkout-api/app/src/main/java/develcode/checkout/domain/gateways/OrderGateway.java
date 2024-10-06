@@ -6,6 +6,8 @@ public interface OrderGateway {
 
     void create(final Order anOrder);
 
+    void update(final Order anOrder);
+
     Order findById(final String id);
 
     Order[] list();

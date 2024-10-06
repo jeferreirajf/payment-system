@@ -32,7 +32,7 @@
             ✔ Repositories using JPA @done
             ✔ Configure Kafka docker @done
             ✔ Messaging @done
-            ☐ Event Handling
+            ✔ Event Handling @done
             ✔ Controllers @done
             ☐ Controller advice
     ☐ Implement the Microservices Interactions

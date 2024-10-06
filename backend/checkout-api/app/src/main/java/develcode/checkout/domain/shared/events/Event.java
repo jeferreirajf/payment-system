@@ -22,8 +22,8 @@ public abstract class Event {
         return name;
     }
 
-    public Object getPayload() {
-        return payload;
+    public <T> T getPayload(Class<T> clazz) throws ClassCastException {
+        return clazz.cast(payload);
     }
 
     public void setPayload(Object payload) {

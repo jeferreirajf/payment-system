@@ -93,7 +93,7 @@ public class CreateOrderUsecaseTest {
 
         anUsecase.execute(input);
 
-        verify(messagingSpy).publish(any(OrderCreatedEvent.class));
+        verify(messagingSpy).publish(any(String.class), any(OrderCreatedEvent.class));
         verify(orderGatewaySpy).create(any(Order.class));
     }
 }

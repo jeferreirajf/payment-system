@@ -36,7 +36,7 @@ public class KafkaMessagingIntegrationTest {
         final var expectedEvent = new TestEvent();
         expectedEvent.setPayload("Test 2");
 
-        this.messaging.publish(expectedEvent);
+        this.messaging.publish("test", expectedEvent);
     }
 
     private class TestEvent extends Event implements Serializable {
@@ -53,7 +53,7 @@ public class KafkaMessagingIntegrationTest {
         @Override
         public void handle(final Event event) {
             assertTrue(event instanceof TestEvent);
-            assertEquals("Test 2", ((TestEvent) event).getPayload());
+            assertEquals("Test 2", event.getPayload(String.class));
         }
     }
 }

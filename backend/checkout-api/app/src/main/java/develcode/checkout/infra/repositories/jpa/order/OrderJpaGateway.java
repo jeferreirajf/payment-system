@@ -21,6 +21,18 @@ public class OrderJpaGateway implements OrderGateway {
     }
 
     @Override
+    public void update(final Order anOrder) {
+        final var existentModel = orderRepository.findById(anOrder.getId()).orElse(null);
+
+        if (existentModel == null) {
+            return;
+        }
+
+        final var aModel = OrderJpaModel.from(anOrder);
+        orderRepository.save(aModel);
+    }
+
+    @Override
     public Order findById(final String id) {
         final var aModel = orderRepository.findById(id).orElse(null);
 

@@ -24,8 +24,8 @@ public class KafkaMessaging implements Messaging {
     private final HashMap<String, List<EventHandler>> handlers = new HashMap<>();
 
     @Override
-    public void publish(final Event event) {
-        this.template.send(event.getName(), event);
+    public void publish(final String topic, final Event event) {
+        this.template.send(topic, event);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class KafkaMessaging implements Messaging {
         }
     }
 
-    @KafkaListener(topics = {"checkout", "payment", "test"}, groupId = "develcode")
+    @KafkaListener(topics = {"checkout", "test"}, groupId = "develcode")
     public void consume(final Event event) {
         final var eventHandlers = this.handlers.get(event.getName());
 
