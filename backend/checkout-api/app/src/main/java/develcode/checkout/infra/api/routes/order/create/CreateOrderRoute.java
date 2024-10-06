@@ -2,6 +2,7 @@ package develcode.checkout.infra.api.routes.order.create;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,7 @@ import develcode.checkout.infra.messaging.Messaging;
 import develcode.checkout.usecases.order.create.CreateOrderUsecase;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class CreateOrderRoute implements Route<CreateOrderRequest, CreateOrderResponse> {
 
     @Autowired
@@ -25,14 +26,16 @@ public class CreateOrderRoute implements Route<CreateOrderRequest, CreateOrderRe
 
     @Override
     @PostMapping
-    public CreateOrderResponse handle(CreateOrderRequest request) {
+    public CreateOrderResponse handle(@RequestBody() final CreateOrderRequest request) {
         final var anUsecase = CreateOrderUsecase.create(orderGateway, messaging);
 
         final var input = CreateOrderRequestToInputMapper.map(request);
 
-        anUsecase.execute(input);
+        final var output = anUsecase.execute(input);
 
-        return new CreateOrderResponse("asd");
+        final var response = new CreateOrderResponse(output);
+
+        return response;
     }
 
 }

@@ -1,0 +1,25 @@
+GET http://localhost:8000/orders
+Content-Type: application/json
+
+###
+POST http://localhost:8000/orders
+Content-Type: application/json
+
+{
+  "customer": {
+    "name": "John Doe",
+    "email": "john@doe.com"
+  },
+  "paymentData": {
+    "cardNumber": "1234567812345678",
+    "cardHolderName": "John Doe",
+    "cardExpirationDate": "12/2028",
+    "cardCvv": "123"
+  },
+  "item": {
+    "name": "Item name",
+    "descroption": "Item description",
+    "price": 125.25,
+    "quantity": 5
+  }
+}

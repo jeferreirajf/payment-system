@@ -1,6 +1,7 @@
 package develcode.checkout.infra.api.routes.order.list;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,12 +14,13 @@ import develcode.checkout.usecases.order.list.ListOrdersUsecase;
 import develcode.checkout.usecases.order.list.dtos.ListOrdersInputDto;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class ListOrderRoute implements Route<ListOrderRequest, ListOrderResponse> {
 
     @Autowired
     private OrderGateway orderGateway;
 
+    @GetMapping
     @Override
     public ListOrderResponse handle(final ListOrderRequest request) {
         final var anUsecase = ListOrdersUsecase.create(orderGateway);
