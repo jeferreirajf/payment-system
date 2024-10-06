@@ -50,7 +50,7 @@ public class CreateOrderUsecaseTest {
 
     @Test
     public void givenValidDependencies_whenCreatingCreateOrderUsecase_thenItShouldReturnAnUsecase() {
-        final var anUsecase = CreateOrderUsecase.create(messagingMock, orderGatewayMock);
+        final var anUsecase = CreateOrderUsecase.create(orderGatewayMock, messagingMock);
 
         assertNotNull(anUsecase);
     }
@@ -58,14 +58,14 @@ public class CreateOrderUsecaseTest {
     @Test
     public void givenAnyNullDependency_whenCreatingCreateOrderUsecase_thenItShouldThrowAnException() {
         var anError = assertThrows(InternalUsecaseException.class, () -> {
-            CreateOrderUsecase.create(null, orderGatewayMock);
+            CreateOrderUsecase.create(orderGatewayMock, null);
         });
 
         assertNotNull(anError);
         assertEquals(anError.getMessage(), "The messaging and orderGateway dependencies must be provided while creating CreateOrderUsecase");
 
         anError = assertThrows(InternalUsecaseException.class, () -> {
-            CreateOrderUsecase.create(messagingMock, null);
+            CreateOrderUsecase.create(null, messagingMock);
         });
 
         assertNotNull(anError);
@@ -74,7 +74,7 @@ public class CreateOrderUsecaseTest {
 
     @Test
     public void givenValidInput_whenExecutingCreateOrderUsecase_thenItShouldReturnAnOrderId() {
-        final var anUsecase = CreateOrderUsecase.create(messagingMock, orderGatewayMock);
+        final var anUsecase = CreateOrderUsecase.create(orderGatewayMock, messagingMock);
 
         final var orderId = anUsecase.execute(input);
 
@@ -89,7 +89,7 @@ public class CreateOrderUsecaseTest {
         final var messagingSpy = spy(Messaging.class);
         final var orderGatewaySpy = spy(OrderGateway.class);
 
-        final var anUsecase = CreateOrderUsecase.create(messagingSpy, orderGatewaySpy);
+        final var anUsecase = CreateOrderUsecase.create(orderGatewaySpy, messagingSpy);
 
         anUsecase.execute(input);
 

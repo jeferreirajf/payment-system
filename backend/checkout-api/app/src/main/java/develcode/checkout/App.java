@@ -13,7 +13,7 @@ import develcode.checkout.infra.configurations.WebserverConfiguration;
 public class App {
 
     public static void main(String[] args) {
-        System.setProperty(AbstractEnvironment.DEFAULT_PROFILES_PROPERTY_NAME, "test");
+        System.setProperty(AbstractEnvironment.DEFAULT_PROFILES_PROPERTY_NAME, "development");
         SpringApplication.run(WebserverConfiguration.class, args);
     }
 }

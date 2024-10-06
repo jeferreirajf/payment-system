@@ -17,9 +17,12 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.listener.CommonErrorHandler;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
+
+import develcode.checkout.infra.messaging.kafka.errorhandlers.KafkaErrorHandler;
 
 @Configuration
 public class KafkaConfiguration {
@@ -63,7 +66,10 @@ public class KafkaConfiguration {
 
     @Bean
     public ConsumerFactory<String, Object> consumerFactory() {
-        return new DefaultKafkaConsumerFactory<>(consumerConfig());
+        JsonDeserializer<Object> deserializer = new JsonDeserializer<>(Object.class);
+        deserializer.addTrustedPackages("*");
+
+        return new DefaultKafkaConsumerFactory<>(consumerConfig(), new StringDeserializer(), deserializer);
     }
 
     @Bean
@@ -71,6 +77,12 @@ public class KafkaConfiguration {
         ConcurrentKafkaListenerContainerFactory<String, Object> factory
                 = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
+        factory.setCommonErrorHandler(errorHandler());
         return factory;
+    }
+
+    @Bean
+    public CommonErrorHandler errorHandler() {
+        return new KafkaErrorHandler();
     }
 }

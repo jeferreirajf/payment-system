@@ -11,6 +11,7 @@ public record OrderDto(
         List<ItemDto> items,
         PaymentDataDto paymentData,
         float totalValue,
+        String status,
         Instant createdAt,
         Instant updatedAt) {
 
@@ -21,6 +22,7 @@ public record OrderDto(
                 order.getItems().stream().map(ItemDto::from).toList(),
                 PaymentDataDto.from(order.getPaymentData()),
                 order.getTotal(),
+                order.getStatus().name(),
                 order.getCreatedAt(),
                 order.getUpdatedAt()
         );

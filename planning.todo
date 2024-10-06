@@ -30,10 +30,10 @@
         ✔ Install and configure Spring Boot @done
         ☐ Implement infra
             ✔ Repositories using JPA @done
-            ✔ Configurar Kafka no docker @done
+            ✔ Configure Kafka docker @done
             ✔ Messaging @done
             ☐ Event Handling
-            ☐ Controllers
+            ✔ Controllers @done
             ☐ Controller advice
     ☐ Implement the Microservices Interactions
     ☐ Implement the Microservices Communication

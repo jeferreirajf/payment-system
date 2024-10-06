@@ -21,7 +21,7 @@ public class CreateOrderUsecase implements Usecase<CreateOrderInputDto, String> 
         this.orderGateway = orderGateway;
     }
 
-    public static CreateOrderUsecase create(final Messaging messaging, final OrderGateway orderGateway) {
+    public static CreateOrderUsecase create(final OrderGateway orderGateway, final Messaging messaging) {
         if (messaging == null || orderGateway == null) {
             throw new InternalUsecaseException(
                     "The messaging and orderGateway dependencies must be provided while creating CreateOrderUsecase"
