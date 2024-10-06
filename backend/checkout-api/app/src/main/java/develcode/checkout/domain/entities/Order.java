@@ -1,27 +1,27 @@
 package develcode.checkout.domain.entities;
 
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 import develcode.checkout.domain.shared.aggregates.AggregateRoot;
 import develcode.checkout.domain.shared.entities.Entity;
 import develcode.checkout.domain.shared.exceptions.BusinessDomainException;
+import develcode.checkout.domain.validators.OrderValidator;
 import develcode.checkout.domain.valueobjects.Customer;
 import develcode.checkout.domain.valueobjects.Item;
 import develcode.checkout.domain.valueobjects.OrderStatus;
 import develcode.checkout.domain.valueobjects.PaymentData;
 
-import java.time.Instant;
-import java.util.UUID;
-import java.util.ArrayList;
-
-import develcode.checkout.domain.validators.OrderValidator;
-
 public class Order extends Entity implements AggregateRoot {
 
     private Customer customer;
     private PaymentData paymentData;
-    private ArrayList<Item> items;
+    private List<Item> items;
     private OrderStatus status;
 
-    private Order(String id, Customer customer, PaymentData paymentData, ArrayList<Item> items, OrderStatus status,
+    private Order(String id, Customer customer, PaymentData paymentData, List<Item> items, OrderStatus status,
             Instant createdAt, Instant updatedAt) {
         super(id, createdAt, updatedAt);
         this.customer = customer;
@@ -47,7 +47,7 @@ public class Order extends Entity implements AggregateRoot {
             final String id,
             final Customer customer,
             final PaymentData paymentData,
-            final ArrayList<Item> items,
+            final List<Item> items,
             final OrderStatus status,
             final Instant createdAt,
             final Instant updatedAt) {
@@ -89,7 +89,7 @@ public class Order extends Entity implements AggregateRoot {
         return this.paymentData;
     }
 
-    public ArrayList<Item> getItems() {
+    public List<Item> getItems() {
         return this.items;
     }
 

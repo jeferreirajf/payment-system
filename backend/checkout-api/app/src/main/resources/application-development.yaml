@@ -1,0 +1,21 @@
+postgres:
+    url: localhost:5432
+    database: develcode
+    username: postgres
+    password: develcode
+
+server:
+    port: 8000
+    compression:
+        enabled: true
+        mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+        min-response-size: 1024
+
+    tomcat:
+        threads:
+            max: 12
+
+spring:
+    jpa:
+        hibernate:
+            ddl-auto: update

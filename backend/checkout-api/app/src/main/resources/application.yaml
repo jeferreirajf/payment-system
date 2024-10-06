@@ -1,0 +1,28 @@
+server:
+    port: 8000
+    compression:
+        enabled: true
+        mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+        min-response-size: 1024
+
+    tomcat:
+        threads:
+            max: 64
+
+spring:
+    datasource:
+        driverClassName: org.postgresql.Driver
+        url: jdbc:postgresql://${postgres.url}/${postgres.database}
+        username: ${postgres.username}
+        password: ${postgres.password}
+        hikari:
+            minimum-idle: 6
+            maximum-pool-size: 12
+            auto-commit: false
+            connection-timeout: 500
+            max-lifetime: 600000
+    jpa:
+        open-in-view: false
+        show-sql: true
+        hibernate:
+            ddl-auto: none

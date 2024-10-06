@@ -27,9 +27,10 @@
             ✔ Create Usecase, Messaging and EventHandler contracts @done
             ✔ Create order @done
             ✔ List orders @done
-        ☐ Install and configure Spring Boot @started(05-10-24 14:50)
+        ✔ Install and configure Spring Boot @done
         ☐ Implement infra
-            ☐ Repositories using JPA
+            ✔ Repositories using JPA @done
+            ✔ Configurar Kafka no docker @done
             ☐ Messaging
             ☐ Event Handling
             ☐ Controllers

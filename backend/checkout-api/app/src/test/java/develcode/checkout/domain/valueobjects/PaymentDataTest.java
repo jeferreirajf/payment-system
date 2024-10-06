@@ -3,7 +3,6 @@ package develcode.checkout.domain.valueobjects;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.annotation.Testable;
 
@@ -16,7 +15,7 @@ public class PaymentDataTest {
     public void givenValidParams_whenCreateWith_thenShouldCreateAPaymentData() {
         final var aCardNumber = "1234567890123456";
         final var aCardHolder = "John Doe";
-        final var aExpirationDate = "12/2022";
+        final var aExpirationDate = "12/2028";
         final var aCvv = "123";
 
         final var aPaymentData = PaymentData.createWith(aCardNumber, aCardHolder, aExpirationDate, aCvv);
@@ -32,9 +31,9 @@ public class PaymentDataTest {
 
     @Test
     public void givenNullOrBlankCardNumber_whenCreateWith_thenShouldThrowException() {
-        final var aCardNumber = new String[] { "", null };
+        final var aCardNumber = new String[]{"", null};
         final var aCardHolder = "John Doe";
-        final var aExpirationDate = "12/2022";
+        final var aExpirationDate = "12/2028";
         final var aCvv = "123";
 
         for (var cardNumber : aCardNumber) {
@@ -48,8 +47,8 @@ public class PaymentDataTest {
     @Test
     public void givenNullOrBlankCardHolder_whenCreateWith_thenShouldThrowException() {
         final var aCardNumber = "1234567890123456";
-        final var aCardHolder = new String[] { "", null };
-        final var aExpirationDate = "12/2022";
+        final var aCardHolder = new String[]{"", null};
+        final var aExpirationDate = "12/2028";
         final var aCvv = "123";
 
         for (var cardHolder : aCardHolder) {
@@ -64,7 +63,7 @@ public class PaymentDataTest {
     public void givenNullOrBlankExpirationDate_whenCreateWith_thenShouldThrowException() {
         final var aCardNumber = "1234567890123456";
         final var aCardHolder = "John Doe";
-        final var aExpirationDate = new String[] { "", null };
+        final var aExpirationDate = new String[]{"", null};
         final var aCvv = "123";
 
         for (var expirationDate : aExpirationDate) {
@@ -79,8 +78,8 @@ public class PaymentDataTest {
     public void givenNullOrBlankCvv_whenCreateWith_thenShouldThrowException() {
         final var aCardNumber = "1234567890123456";
         final var aCardHolder = "John Doe";
-        final var aExpirationDate = "12/2022";
-        final var aCvv = new String[] { "", null };
+        final var aExpirationDate = "12/2028";
+        final var aCvv = new String[]{"", null};
 
         for (var cvv : aCvv) {
             final var anException = assertThrows(ValidationDomainException.class,
