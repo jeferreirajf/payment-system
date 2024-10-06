@@ -5,7 +5,7 @@ import develcode.checkout.domain.shared.events.Event;
 public class PaymentRefusedEvent extends Event {
 
     private PaymentRefusedEvent() {
-        super("PaymentRefusedEvent");
+        super("PaymentRejectedEvent");
     }
 
     public static PaymentRefusedEvent create() {

@@ -1,4 +1,4 @@
-import { PaymentData } from 'src/application/domain/value-objects/payment-data.value-object';
+import { PaymentData } from 'src/domain/value-objects/payment-data.value-object';
 import { PaymentDataModel } from '../models/payment-data.model';
 
 export class PaymentDataModelToValueObjectMapper {

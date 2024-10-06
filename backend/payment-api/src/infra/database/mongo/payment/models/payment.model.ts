@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { PaymentDataModel } from './payment-data.model';
-import { PaymentStatus } from 'src/application/domain/entities/payment.entity';
+import { PaymentStatus } from 'src/domain/entities/payment.entity';
 
 @Schema({ collection: 'payments' })
 export class PaymentModel {

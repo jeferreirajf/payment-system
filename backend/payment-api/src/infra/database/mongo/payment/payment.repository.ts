@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Payment } from 'src/application/domain/entities/payment.entity';
-import { PaymentGateway } from 'src/application/domain/gateways/payment.gateway';
+import { Payment } from 'src/domain/entities/payment.entity';
+import { PaymentGateway } from 'src/domain/gateways/payment.gateway';
 import { PaymentModel } from './models/payment.model';
 import { Model } from 'mongoose';
 import { PaymentEntityToModelMapper } from './mappers/payment-entity-to-model.mapper';

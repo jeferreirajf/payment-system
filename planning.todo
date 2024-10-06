@@ -39,8 +39,8 @@
         ✔ Configure NestJS @done
         ✔ Create domain @done
         ✔ Create repository @done
-        ☐ Create fetcher
-        ☐ Create messaging
-        ☐ Create event handlers
-        ☐ Create consumers
+        ✔ Create fetcher @done
+        ✔ Create messaging @done
+        ✔ Create event handlers @done
         ☐ Create Kafka configuration
+        ☐ Create consumers

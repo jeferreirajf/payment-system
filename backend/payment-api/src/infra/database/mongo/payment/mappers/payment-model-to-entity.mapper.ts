@@ -1,4 +1,4 @@
-import { Payment } from 'src/application/domain/entities/payment.entity';
+import { Payment } from 'src/domain/entities/payment.entity';
 import { PaymentModel } from '../models/payment.model';
 import { PaymentDataModelToValueObjectMapper } from './payment-data-model-to-value-object.mapper';
 
