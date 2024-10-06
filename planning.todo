@@ -28,12 +28,15 @@
             ✔ Create order @done
             ✔ List orders @done
         ✔ Install and configure Spring Boot @done
-        ☐ Implement infra
+        ✔ Implement infra @done
             ✔ Repositories using JPA @done
             ✔ Configure Kafka docker @done
             ✔ Messaging @done
             ✔ Event Handling @done
             ✔ Controllers @done
-            ☐ Controller advice
-    ☐ Implement the Microservices Interactions
-    ☐ Implement the Microservices Communication
+            ✔ Controller advice @done
+    ☐ Implement Payment Microservice
+        ✔ Configure NestJS @done
+        ✔ Create domain @done
+        ☐ Create repository
+        ☐ Create usecases
