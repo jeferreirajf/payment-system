@@ -31,7 +31,7 @@
         ☐ Implement infra
             ✔ Repositories using JPA @done
             ✔ Configurar Kafka no docker @done
-            ☐ Messaging
+            ✔ Messaging @done
             ☐ Event Handling
             ☐ Controllers
             ☐ Controller advice

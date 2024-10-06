@@ -26,3 +26,15 @@ spring:
         show-sql: true
         hibernate:
             ddl-auto: none
+    kafka:
+        bootstrap-servers: ${kafka.url}
+        # consumer:
+        #     group-id: develcode
+        #     auto-offset-reset: earliest
+        #     key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        #     value-deserializer: org.apache.kafka.common.serialization.JsonSerializer
+        #     properties:
+        #         spring.json.trusted.packages: "*"
+        # producer:
+        #     key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        #     value-serializer: org.apache.kafka.common.serialization.JsonSerializer

@@ -1,3 +1,6 @@
+kafka:
+    url: localhost:9092
+
 spring:
     datasource:
         driverClassName: org.h2.Driver

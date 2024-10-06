@@ -4,6 +4,9 @@ postgres:
     username: postgres
     password: develcode
 
+kafka:
+    url: localhost:9092
+
 server:
     port: 8000
     compression:

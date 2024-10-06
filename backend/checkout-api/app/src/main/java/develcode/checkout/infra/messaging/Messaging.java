@@ -7,6 +7,6 @@ public interface Messaging {
 
     public void publish(final Event event);
 
-    public void subscribe(final String eventName, final EventHandler handler);
+    public void subscribe(final String topic, final EventHandler handler);
 
 }

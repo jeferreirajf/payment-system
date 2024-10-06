@@ -28,6 +28,8 @@ dependencies {
 
     implementation 'org.postgresql:postgresql:42.7.4'
 
+    implementation 'org.springframework.kafka:spring-kafka'
+
     // Use JUnit Jupiter for testing.
     testImplementation 'org.mockito:mockito-junit-jupiter:5.14.1'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
