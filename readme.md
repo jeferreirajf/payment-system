@@ -46,6 +46,15 @@ A API consome o tópico `payment` no Kafka e publica no tópico `checkout`. Os e
 -   PaymentPaidEvent: Evento que é publicado quando um pagamento é aprovado.
 -   PaymentRejectedEvent: Evento que é publicado quando um pagamento é rejeitado.
 
+As variáveis de ambiente do sistema são:
+```bash
+PORT=3030
+MONGO_DATABASE_URL=mongodb://develcode:develcode@localhost:27017/develcode
+PAYMENT_CALLBACK_URL=http://localhost:3030/webhook/payment
+KAFKA_URL=localhost:9092
+GO_PAYMENT_URL=http://localhost:6001
+```
+
 ### GoPay-api
 
 A API de gateway de pagamento foi desenvolvida com Golang e possui os seguintes endpoints:
