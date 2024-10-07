@@ -1,0 +1,17 @@
+###
+POST http://localhost:3030/webhook/payment
+Content-Type: application/json
+
+{
+  "paymentId": "123",
+  "status": "APPROVED"
+}
+
+###
+POST http://localhost:3030/webhook/payment
+Content-Type: application/json
+
+{
+  "paymentId": "123",
+  "status": "REJECTED"
+}

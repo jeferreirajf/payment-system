@@ -42,5 +42,7 @@
         ✔ Create fetcher @done
         ✔ Create messaging @done
         ✔ Create event handlers @done
+        ✔ Create webhook controller @done
         ☐ Create Kafka configuration
         ☐ Create consumers
+        ☐ Create controller advice
