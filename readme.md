@@ -69,6 +69,7 @@ gradle run
 E então acessar a pasta `backend/payment-api` e executar o comando:
 
 ```bash
+npm install
 npm run start:dev
 ```
 
