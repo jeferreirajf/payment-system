@@ -32,21 +32,20 @@ public class PaymentDataJpaModel {
     @Column(name = "cvv", nullable = false)
     private String cvv;
 
-    @OneToOne(
-            targetEntity = OrderJpaModel.class,
-            fetch = FetchType.LAZY)
-    @JoinColumn(name = "orderId", referencedColumnName = "id")
+    @OneToOne(fetch = FetchType.LAZY, targetEntity = OrderJpaModel.class)
+    @JoinColumn(name = "orderId")
     private OrderJpaModel order;
 
     public PaymentDataJpaModel() {
     }
 
-    public static PaymentDataJpaModel from(final PaymentData paymentData) {
+    public static PaymentDataJpaModel from(final PaymentData paymentData, final OrderJpaModel order) {
         PaymentDataJpaModel aModel = new PaymentDataJpaModel();
         aModel.setCardNumber(paymentData.getCardNumber());
         aModel.setCardHolder(paymentData.getCardHolder());
         aModel.setExpirationDate(paymentData.getExpirationDate());
         aModel.setCvv(paymentData.getCvv());
+        aModel.setOrder(order);
         return aModel;
     }
 

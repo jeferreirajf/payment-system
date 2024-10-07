@@ -1,8 +1,12 @@
+import { UUIDGenerator } from 'src/utils/uuid-generator';
+
 export abstract class Event {
+  private id: string;
   private name: string;
   private payload: any;
 
   protected constructor(name: string) {
+    this.id = UUIDGenerator.generate();
     this.name = name;
     this.payload = null;
   }

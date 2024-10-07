@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-@Schema({ collection: 'paymentData' })
 export class PaymentDataModel {
   @Prop({ required: true })
   cardNumber: string;
@@ -15,5 +14,3 @@ export class PaymentDataModel {
   @Prop({ required: true })
   updatedAt: Date;
 }
-
-export const PaymentDataSchema = SchemaFactory.createForClass(PaymentDataModel);

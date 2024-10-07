@@ -1,10 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import {
-  PaymentDataModel,
-  PaymentDataSchema,
-} from './payment/models/payment-data.model';
 import { PaymentModel, PaymentSchema } from './payment/models/payment.model';
 import { PaymentRepository } from './payment/payment.repository';
 
@@ -17,7 +13,6 @@ import { PaymentRepository } from './payment/payment.repository';
       }),
     }),
     MongooseModule.forFeature([
-      { name: PaymentDataModel.name, schema: PaymentDataSchema },
       { name: PaymentModel.name, schema: PaymentSchema },
     ]),
   ],

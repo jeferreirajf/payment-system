@@ -1,11 +1,17 @@
 package develcode.checkout.domain.shared.events;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public abstract class Event {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+public abstract class Event implements Serializable {
+
+    @JsonProperty("id")
     private final String id;
+    @JsonProperty("name")
     private final String name;
+    @JsonProperty("payload")
     private Object payload;
 
     protected Event(String name) {

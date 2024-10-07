@@ -22,6 +22,7 @@ import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
+import develcode.checkout.domain.shared.events.Event;
 import develcode.checkout.infra.messaging.kafka.errorhandlers.KafkaErrorHandler;
 
 @Configuration
@@ -33,22 +34,34 @@ public class KafkaConfiguration {
     @Bean
     public Map<String, Object> producerConfig() {
         Map<String, Object> props = new HashMap<>();
+
+        props.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, true);
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
                 KAFKA_BROKER);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
                 StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
                 JsonSerializer.class);
+
         return props;
     }
 
     @Bean
-    public ProducerFactory<String, Object> producerFactory() {
-        return new DefaultKafkaProducerFactory<>(producerConfig());
+    public ProducerFactory<String, Event> producerFactory() {
+
+        final var producerConfig = producerConfig();
+
+        final var k = new JsonSerializer<String>();
+        final var v = new JsonSerializer<Event>();
+
+        k.configure(producerConfig, true);
+        v.configure(producerConfig, false);
+
+        return new DefaultKafkaProducerFactory<String, Event>(producerConfig, k, v);
     }
 
     @Bean
-    public KafkaTemplate<String, Object> kafkaTemplate() {
+    public KafkaTemplate<String, Event> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 

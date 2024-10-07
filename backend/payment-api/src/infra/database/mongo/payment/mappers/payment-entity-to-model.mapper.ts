@@ -10,6 +10,7 @@ export class PaymentEntityToModelMapper {
 
     const aModel = new PaymentModel();
 
+    aModel.id = anEntity.getId();
     aModel.originId = anEntity.getOriginId();
     aModel.amount = anEntity.getAmount();
     aModel.status = anEntity.getStatus();

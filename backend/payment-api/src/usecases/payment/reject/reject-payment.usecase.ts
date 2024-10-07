@@ -38,7 +38,7 @@ export class RejectPaymentUsecase
   }
 
   async execute(input: RejectPaymentUsecaseInputDto): Promise<void> {
-    const aPayment = await this.paymentGateway.findByOriginId(input.paymentId);
+    const aPayment = await this.paymentGateway.findById(input.paymentId);
 
     if (!aPayment || aPayment === null) {
       throw new NotFoundUsecaseException(
@@ -48,6 +48,8 @@ export class RejectPaymentUsecase
     }
 
     aPayment.reject();
+
+    console.log('Rejecting payment', aPayment);
 
     await this.paymentGateway.update(aPayment);
 

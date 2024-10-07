@@ -107,4 +107,11 @@ public class Order extends Entity implements AggregateRoot {
     protected void validate() {
         OrderValidator.create().validate(this);
     }
+
+    @Override
+    public String toString() {
+        return "Order [customer=" + customer + ", paymentData=" + paymentData + ", items=" + items + ", status="
+                + status + "]";
+    }
+
 }

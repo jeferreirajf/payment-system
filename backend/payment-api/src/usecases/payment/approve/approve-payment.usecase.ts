@@ -5,6 +5,7 @@ import { MessagingGateway } from 'src/infra/messaging/messaging';
 import { InternalErrorUsecaseException } from 'src/usecases/shared/exceptions/internal-error.usecase.exception';
 import { NotFoundUsecaseException } from 'src/usecases/shared/exceptions/not-found.usecase.exception';
 import { Usecase } from 'src/usecases/usecase';
+import { UUIDGenerator } from 'src/utils/uuid-generator';
 
 export type ApprovePaymentUsecaseInputDto = {
   paymentId: string;
@@ -48,6 +49,8 @@ export class ApprovePaymentUsecase
     }
 
     aPayment.approve();
+
+    console.log('Approving payment', aPayment);
 
     await this.paymentGateway.update(aPayment);
 

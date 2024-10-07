@@ -1,0 +1,7 @@
+POST http://localhost:6001/orders/place
+
+{
+  "paymentId": "e22450ae-3fb6-4cdf-a82f-c8e1bf6c800e",
+  "amount": 626.25,
+  "callback": "http://localhost:3030/webhook/payment"
+}

@@ -1,0 +1,17 @@
+kafka:
+    url: localhost:9092
+
+spring:
+    datasource:
+        driverClassName: org.h2.Driver
+        url: jdbc:h2:mem:develcode;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE
+        username: develcode
+        password: develcode
+    jpa:
+        defer-datasource-initialization: true
+        hibernate:
+            ddl-auto: update
+    h2:
+        console:
+            enabled: true
+            path: /h2

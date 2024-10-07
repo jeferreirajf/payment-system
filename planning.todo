@@ -43,6 +43,6 @@
         ✔ Create messaging @done
         ✔ Create event handlers @done
         ✔ Create webhook controller @done
-        ☐ Create Kafka configuration
-        ☐ Create consumers
+        ✔ Create Kafka configuration @done
+        ✔ Create consumers @done
         ☐ Create controller advice

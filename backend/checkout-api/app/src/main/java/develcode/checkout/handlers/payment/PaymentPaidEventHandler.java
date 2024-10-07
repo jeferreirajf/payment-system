@@ -3,6 +3,8 @@ package develcode.checkout.handlers.payment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import develcode.checkout.domain.gateways.OrderGateway;
 import develcode.checkout.domain.shared.events.Event;
 import develcode.checkout.domain.valueobjects.OrderStatus;
@@ -38,11 +40,11 @@ public class PaymentPaidEventHandler implements EventHandler {
         try {
             final var payload = event.getPayload(PaymentPaidEventPayload.class);
 
-            final var anOrder = orderGateway.findById(payload.orderId());
+            final var anOrder = orderGateway.findById(payload.orderId);
 
             if (anOrder == null) {
                 throw new NotFoundEventHandlerException(
-                        "The order with id " + payload.orderId() + " was not found while handling PaymentPaidEvent"
+                        "The order with id " + payload.orderId + " was not found while handling PaymentPaidEvent"
                 );
             }
 
@@ -51,7 +53,7 @@ public class PaymentPaidEventHandler implements EventHandler {
                 orderGateway.update(anOrder);
             } else {
                 throw new BadRequestEventHandlerException(
-                        "The payment with id " + payload.paymentId() + " was " + payload.status + " instead of APPROVED while handling PaymentPaidEvent"
+                        "The payment with id " + payload.paymentId + " was " + payload.status + " instead of APPROVED while handling PaymentPaidEvent"
                 );
             }
 
@@ -63,8 +65,17 @@ public class PaymentPaidEventHandler implements EventHandler {
 
     }
 
-    private record PaymentPaidEventPayload(String orderId, String paymentId, String status) {
+    private class PaymentPaidEventPayload {
 
+        @JsonProperty("orderId")
+        public String orderId;
+        @JsonProperty("paymentId")
+        public String paymentId;
+        @JsonProperty("status")
+        public String status;
+
+        public PaymentPaidEventPayload() {
+        }
     }
 
 }

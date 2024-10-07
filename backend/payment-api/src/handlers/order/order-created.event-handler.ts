@@ -26,7 +26,7 @@ export class OrderCreatedEventHandler implements EventHandler {
     paymentGateway,
     externalPaymentGateway,
   }: OrderCreatedEventHandlerCreateDto): OrderCreatedEventHandler {
-    if (!paymentGateway || externalPaymentGateway) {
+    if (!paymentGateway || !externalPaymentGateway) {
       throw new InfraException(
         `Missing dependency while creating ${OrderCreatedEventHandler.name}`,
       );
@@ -35,26 +35,28 @@ export class OrderCreatedEventHandler implements EventHandler {
     return new OrderCreatedEventHandler(paymentGateway, externalPaymentGateway);
   }
 
-  async handle(event: OrderCreatedEvent): Promise<void> {
-    const payload = event.getPayload() as OrderCreatedPayload;
+  async handle(event: any): Promise<void> {
+    console.log('OrderCreatedEventHandler', event);
 
     const aPaymentData = PaymentData.create({
-      cardHolder: payload.paymentData.cardHolder,
-      cardNumber: payload.paymentData.cardNumber,
-      expirationDate: payload.paymentData.expirationDate,
-      cvv: payload.paymentData.cvv,
+      cardHolder: event.paymentData.cardHolder,
+      cardNumber: event.paymentData.cardNumber,
+      expirationDate: event.paymentData.expirationDate,
+      cvv: event.paymentData.cvv,
     });
 
-    const amount = payload.items.reduce(
+    const amount = event.items.reduce(
       (acc, item) => acc + item.price * item.quantity,
       0,
     );
 
     const aPaymentToProcess = Payment.create({
       amount,
-      originId: payload.id,
+      originId: event.id,
       paymentData: aPaymentData,
     });
+
+    console.log('Payment to process', aPaymentToProcess);
 
     await this.paymentGateway.create(aPaymentToProcess);
 

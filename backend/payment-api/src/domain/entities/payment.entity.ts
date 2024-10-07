@@ -107,6 +107,8 @@ export class Payment extends Entity {
       );
     }
 
+    this.paymentResponseDate = new Date();
+
     this.status = PaymentStatus.APPROVED;
     this.hasChanged();
 
@@ -120,6 +122,8 @@ export class Payment extends Entity {
         Payment.name,
       );
     }
+
+    this.paymentResponseDate = new Date();
 
     this.status = PaymentStatus.REJECTED;
     this.hasChanged();

@@ -19,7 +19,7 @@ import develcode.checkout.infra.messaging.Messaging;
 public class KafkaMessaging implements Messaging {
 
     @Autowired
-    private KafkaTemplate<String, Object> template;
+    private KafkaTemplate<String, Event> template;
 
     private final HashMap<String, List<EventHandler>> handlers = new HashMap<>();
 
@@ -37,7 +37,7 @@ public class KafkaMessaging implements Messaging {
         }
     }
 
-    @KafkaListener(topics = {"checkout", "test"}, groupId = "develcode")
+    @KafkaListener(topics = {"checkout", "test"}, groupId = "develcode-checkout-api")
     public void consume(final Event event) {
         final var eventHandlers = this.handlers.get(event.getName());
 

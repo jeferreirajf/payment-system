@@ -13,6 +13,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -27,21 +28,25 @@ public class OrderJpaModel {
     @OneToOne(
             targetEntity = CustomerJpaModel.class,
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            mappedBy = "order"
     )
     private CustomerJpaModel customer;
     @OneToOne(
             targetEntity = PaymentDataJpaModel.class,
+            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
+            mappedBy = "order"
     )
     private PaymentDataJpaModel paymentData;
     @OneToMany(
             targetEntity = OrderItemJpaModel.class,
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "order"
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
     )
+    @JoinColumn(name = "orderId")
     private List<OrderItemJpaModel> items;
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
@@ -65,12 +70,13 @@ public class OrderJpaModel {
         OrderJpaModel aModel = new OrderJpaModel();
 
         aModel.setId(order.getId());
-        aModel.setCustomer(CustomerJpaModel.from(order.getCustomer()));
-        aModel.setPaymentData(PaymentDataJpaModel.from(order.getPaymentData()));
-        aModel.setItems(order.getItems().stream().map(OrderItemJpaModel::from).collect(Collectors.toList()));
         aModel.setStatus(order.getStatus());
         aModel.setCreatedAt(order.getCreatedAt());
         aModel.setUpdatedAt(order.getUpdatedAt());
+        aModel.setItems(order.getItems().stream().map(OrderItemJpaModel::from).collect(Collectors.toList()));
+
+        aModel.setCustomer(CustomerJpaModel.from(order.getCustomer(), aModel));
+        aModel.setPaymentData(PaymentDataJpaModel.from(order.getPaymentData(), aModel));
 
         return aModel;
     }

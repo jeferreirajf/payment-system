@@ -19,7 +19,7 @@ export class PaymentZodValidator implements Validator<Payment> {
       const err = error as z.ZodError;
 
       const messages = Array.from(err.errors).map((error) => {
-        return error.message;
+        return `${error.path} ${error.message}`;
       });
 
       const message = messages.join('. ');

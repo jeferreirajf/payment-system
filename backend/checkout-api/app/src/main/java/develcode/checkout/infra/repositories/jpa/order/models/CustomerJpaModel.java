@@ -26,19 +26,18 @@ public class CustomerJpaModel {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @OneToOne(
-            targetEntity = OrderJpaModel.class,
-            fetch = FetchType.LAZY)
-    @JoinColumn(name = "orderId", referencedColumnName = "id")
+    @OneToOne(fetch = FetchType.LAZY, targetEntity = OrderJpaModel.class)
+    @JoinColumn(name = "orderId")
     private OrderJpaModel order;
 
     public CustomerJpaModel() {
     }
 
-    public static CustomerJpaModel from(final Customer customer) {
+    public static CustomerJpaModel from(final Customer customer, final OrderJpaModel order) {
         CustomerJpaModel aModel = new CustomerJpaModel();
         aModel.setName(customer.getName());
         aModel.setEmail(customer.getEmail());
+        aModel.setOrder(order);
         return aModel;
     }
 
@@ -85,14 +84,14 @@ public class CustomerJpaModel {
     }
 
     /**
-     * @return the orderId
+     * @return the order
      */
-    public OrderJpaModel getOrderId() {
+    public OrderJpaModel getOrder() {
         return order;
     }
 
     /**
-     * @param orderId the orderId to set
+     * @param order the order to set
      */
     public void setOrder(OrderJpaModel order) {
         this.order = order;

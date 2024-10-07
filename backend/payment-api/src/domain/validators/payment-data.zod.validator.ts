@@ -15,20 +15,17 @@ export class PaymentDataZodValidator implements Validator<PaymentData> {
     const schema = this.getSchema();
 
     try {
-      schema.parse({
-        cardNumber: input.getCardNumber(),
-        cardHolder: input.getCardHolder(),
-        expirationDate: input.getExpirationDate(),
-        cvv: input.getCvv(),
-      });
+      schema.parse(input);
     } catch (error) {
       const err = error as z.ZodError;
 
       const messages = Array.from(err.errors).map((error) => {
-        return error.message;
+        return `${error.path} ${error.message}`;
       });
 
       const message = messages.join('. ');
+
+      console.log(message);
 
       throw new DomainException(message);
     }
